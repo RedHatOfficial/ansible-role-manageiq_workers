@@ -72,8 +72,8 @@
 - name: ManageIQ Workers | Validate variables | VM Analysis Collectors | Memory Threshold
   assert:
     that:
-      - "manageiq_vm_analysis_collector_memory_threshold in manageiq_valid_memory_threshold_0"
-    msg: "manageiq_vm_analysis_collector_memory_threshold ({{ manageiq_vm_analysis_collector_memory_threshold }}) must be in {{ manageiq_valid_memory_threshold_0 }}"
+      - "manageiq_vm_analysis_collector_memory_threshold in manageiq_valid_memory_threshold_2"
+    msg: "manageiq_vm_analysis_collector_memory_threshold ({{ manageiq_vm_analysis_collector_memory_threshold }}) must be in {{ manageiq_valid_memory_threshold_2 }}"
 
 - name: ManageIQ Workers | Validate variables | VM Analysis Collectors | Thread Count
   assert:
