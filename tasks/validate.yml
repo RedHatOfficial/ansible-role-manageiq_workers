@@ -1,0 +1,123 @@
+---
+- name: ManageIQ Workers | Validate variables | Generic Workers | Thread Count
+  assert:
+    that:
+      - "manageiq_generic_worker_thread_count >= 0"
+      - "manageiq_generic_worker_thread_count <= 9"
+    msg: "manageiq_generic_worker_thread_count must be between 0 and 9"
+
+- name: ManageIQ Workers | Validate variables | Generic Workers | Memory Threshold
+  assert:
+    that:
+      - "manageiq_generic_worker_memory_threshold in manageiq_valid_memory_threshold_0"
+    msg: "manageiq_generic_worker_memory_threshold ({{ manageiq_generic_worker_memory_threshold }}) must be in {{ manageiq_valid_memory_threshold_0 }}"
+
+- name: ManageIQ Workers | Validate variables | Priority Workers | Thread Count
+  assert:
+    that:
+      - "manageiq_priority_worker_thread_count >= 0"
+      - "manageiq_priority_worker_thread_count <= 4"
+    msg: "manageiq_priority_worker_thread_count must be between 0 and 4"
+
+- name: ManageIQ Workers | Validate variables | Priority Workers | Memory Threshold
+  assert:
+    that:
+      - "manageiq_priority_worker_memory_threshold in manageiq_valid_memory_threshold_0"
+    msg: "manageiq_priority_worker_memory_threshold ({{ manageiq_priority_worker_memory_threshold }}) must be in {{ manageiq_valid_memory_threshold_0 }}"
+
+- name: ManageIQ Workers | Validate variables | C&U Data Collectors | Thread Count
+  assert:
+    that:
+      - "manageiq_c_and_u_data_collector_thread_count >= 0"
+      - "manageiq_c_and_u_data_collector_thread_count <= 9"
+    msg: "manageiq_c_and_u_data_collector_thread_count must be between 0 and 9"
+
+- name: ManageIQ Workers | Validate variables | C&U Data Collectors | Memory Threshold
+  assert:
+    that:
+      - "manageiq_c_and_u_data_collector_memory_threshold in manageiq_valid_memory_threshold_0"
+    msg: "manageiq_c_and_u_data_collector_memory_threshold ({{ manageiq_c_and_u_data_collector_memory_threshold }}) must be in {{ manageiq_valid_memory_threshold_0 }}"
+
+- name: ManageIQ Workers | Validate variables | C&U Data Processors | Thread Count
+  assert:
+    that:
+      - "manageiq_c_and_u_data_processor_thread_count >= 0"
+      - "manageiq_c_and_u_data_processor_thread_count <= 4"
+    msg: "manageiq_c_and_u_data_processor_thread_count must be between 0 and 4"
+
+- name: ManageIQ Workers | Validate variables | C&U Data Processors | Memory Threshold
+  assert:
+    that:
+      - "manageiq_c_and_u_data_processor_memory_threshold in manageiq_valid_memory_threshold_0"
+    msg: "manageiq_c_and_u_data_processor_memory_threshold ({{ manageiq_c_and_u_data_processor_memory_threshold }}) must be in {{ manageiq_valid_memory_threshold_0 }}"
+
+- name: ManageIQ Workers | Validate variables | Event Monitor | Memory Threshold
+  assert:
+    that:
+      - "manageiq_event_monitor_memory_threshold in manageiq_valid_memory_threshold_1"
+    msg: "manageiq_event_monitor_memory_threshold ({{ manageiq_event_monitor_memory_threshold }}) must be in {{ manageiq_valid_memory_threshold_1 }}"
+
+- name: ManageIQ Workers | Validate variables | Refresh | Memory Threshold
+  assert:
+    that:
+      - "manageiq_refresh_worker in manageiq_valid_memory_threshold_2"
+    msg: "manageiq_refresh_worker ({{ manageiq_refresh_worker }}) must be in {{ manageiq_valid_memory_threshold_2 }}"
+
+- name: ManageIQ Workers | Validate variables | Connection Broker | Memory Threshold
+  assert:
+    that:
+      - "manageiq_connection_broker_memory_threshold in manageiq_valid_memory_threshold_1"
+    msg: "manageiq_connection_broker_memory_threshold ({{ manageiq_connection_broker_memory_threshold }}) must be in {{ manageiq_valid_memory_threshold_1 }}"
+
+- name: ManageIQ Workers | Validate variables | VM Analysis Collectors | Memory Threshold
+  assert:
+    that:
+      - "manageiq_vm_analysis_collector_memory_threshold in manageiq_valid_memory_threshold_0"
+    msg: "manageiq_vm_analysis_collector_memory_threshold ({{ manageiq_vm_analysis_collector_memory_threshold }}) must be in {{ manageiq_valid_memory_threshold_0 }}"
+
+- name: ManageIQ Workers | Validate variables | VM Analysis Collectors | Thread Count
+  assert:
+    that:
+      - "manageiq_vm_analysis_collector_thread_count >= 0"
+      - "manageiq_vm_analysis_collector_thread_count <= 5"
+    msg: "manageiq_vm_analysis_collector_thread_count must be between 0 and 5"
+
+- name: ManageIQ Workers | Validate variables | UI Worker | Thread Count
+  assert:
+    that:
+      - "manageiq_ui_worker_thread_count >= 0"
+      - "manageiq_ui_worker_thread_count <= 9"
+    msg: "manageiq_ui_worker_thread_count must be between 0 and 9"
+
+- name: ManageIQ Workers | Validate variables | Websocket Workers | Thread Count
+  assert:
+    that:
+      - "manageiq_websocket_worker_thread_count >= 0"
+      - "manageiq_websocket_worker_thread_count <= 9"
+    msg: "manageiq_websocket_worker_thread_count must be between 0 and 9"
+
+- name: ManageIQ Workers | Validate variables | Reporting Workers | Memory Threshold
+  assert:
+    that:
+      - "manageiq_reporting_worker_memory_threshold in manageiq_valid_memory_threshold_0"
+    msg: "manageiq_reporting_worker_memory_threshold ({{ manageiq_reporting_worker_memory_threshold }}) must be in {{ manageiq_valid_memory_threshold_0 }}"
+
+- name: ManageIQ Workers | Validate variables | Reporting Workers | Thread Count
+  assert:
+    that:
+      - "manageiq_reporting_worker_thread_count >= 0"
+      - "manageiq_reporting_worker_thread_count <= 9"
+    msg: "manageiq_reporting_worker_thread_count must be between 0 and 9"
+
+- name: ManageIQ Workers | Validate variables | Web Service Workers | Memory Threshold
+  assert:
+    that:
+      - "manageiq_web_service_worker_memory_threshold in manageiq_valid_memory_threshold_0"
+    msg: "manageiq_web_service_worker_memory_threshold ({{ manageiq_web_service_worker_memory_threshold }}) must be in {{ manageiq_valid_memory_threshold_0 }}"
+
+- name: ManageIQ Workers | Validate variables | Reporting Workers | Thread Count
+  assert:
+    that:
+      - "manageiq_web_service_worker_thread_count >= 0"
+      - "manageiq_web_service_worker_thread_count <= 9"
+    msg: "manageiq_web_service_worker_thread_count must be between 0 and 9"

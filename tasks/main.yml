@@ -1,0 +1,104 @@
+---
+- name: ManageIQ Workers | Validate
+  include_tasks: validate.yml
+  when: manageiq_workers_validate_parameters
+
+- name: ManageIQ Workers | Configure
+  manageiq_config:
+    name: workers
+    value:
+      worker_base:
+        # Workers Tab: not exposed
+        defaults:
+          count: "{{ manageiq_default_thread_count }}"
+          memory_threshold: "{{ manageiq_default_memory_threshold }}"
+
+        # Workers Tab: not exposed
+        embedded_ansible_worker:
+          memory_threshold: "{{ manageiq_ansible_memory_threshold }}"
+
+        # Workers Tab: Event Montior
+        event_catcher:
+          defaults:
+            memory_threshold: "{{ manageiq_event_monitor_memory_threshold }}"
+          memory_threshold: "{{ manageiq_event_monitor_memory_threshold }}"
+
+        queue_worker_base:
+          # Workers Tab: not exposed
+          defaults:
+            memory_threshold: "{{ manageiq_default_memory_threshold }}"
+
+          # Workers Tab: C & U Data Collectors
+          ems_metrics_collector_worker:
+            defaults:
+              count: "{{ manageiq_c_and_u_data_collector_thread_count }}"
+              memory_threshold: "{{ manageiq_c_and_u_data_collector_memory_threshold }}"
+
+          # C & U Data Processor
+          ems_metrics_processor_worker:
+            count: "{{ manageiq_c_and_u_data_processor_thread_count }}"
+            memory_threshold: "{{ manageiq_c_and_u_data_processor_memory_threshold }}"
+
+          # Workers Tab: Refresh
+          ems_refresh_worker:
+            defaults:
+              memory_threshold: "{{ manageiq_refresh_worker }}"
+
+          # Workers Tab: Generic Workers
+          generic_worker:
+            count: "{{ manageiq_generic_worker_thread_count }}"
+            memory_threshold: "{{ manageiq_generic_worker_memory_threshold }}"
+
+          # Workers Tab: not exposed
+          netapp_refresh_worker:
+            memory_threshold: "{{ manageiq_netapp_refresh_worker_memory_threshold }}"
+
+          # Workers Tab: Priority Workers
+          priority_worker:
+            count: "{{ manageiq_priority_worker_thread_count }}"
+            memory_threshold: "{{ manageiq_priority_worker_memory_threshold }}"
+
+          # Workers Tab: Reporting Workers
+          reporting_worker:
+            count: "{{ manageiq_reporting_worker_thread_count }}"
+            memory_threshold: "{{ manageiq_reporting_worker_memory_threshold }}"
+
+          # Workers Tab: VM Analysis Collectors
+          smart_proxy_worker:
+            count: "{{ manageiq_vm_analysis_collector_thread_count }}"
+            memory_threshold: "{{ manageiq_vm_analysis_collector_memory_threshold }}"
+
+          # Workers Tab: not exposed
+          storage_metrics_collector_worker:
+            count: "{{ manageiq_storage_metrics_collector_worker_thread_count }}"
+
+          # Workers Tab: not exposed
+          vmdb_storage_bridge_worker:
+            memory_threshold: "{{ manageiq_vmdb_storage_bridge_worker_memory_threshold }}"
+
+        # Workers Tab: not exposed
+        schedule_worker:
+          memory_threshold: "{{ manageiq_schedule_worker_memory_threshold }}"
+
+        # Workers Tab: not exposed
+        smis_refresh_worker:
+          memory_threshold: "{{ manageiq_sims_refresh_worker_memory_threshold }}"
+
+        # Workers Tab: UI worker
+        ui_worker:
+          count: "{{ manageiq_ui_worker_thread_count }}"
+          memory_threshold: "{{ manageiq_ui_worker_memory_threshold }}"
+
+        # Workers Tab: Connection Broker
+        vim_broker_worker:
+          memory_threshold: "{{ manageiq_connection_broker_memory_threshold }}"
+
+        # Workers Tab: Web Serice Workers
+        web_service_worker:
+          count: "{{ manageiq_web_service_worker_thread_count }}"
+          memory_threshold: "{{ manageiq_web_service_worker_memory_threshold }}"
+
+        # Workers Tab: Websocket Workers
+        websocket_worker:
+          count: "{{ manageiq_websocket_worker_thread_count }}"
+          memory_threshold: "{{ manageiq_websocket_worker_memory_threshold }}"
