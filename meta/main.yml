@@ -5,21 +5,21 @@ galaxy_info:
   license: license (Apache)
   min_ansible_version: 2.4
   platforms:
-  - name: EL
-    versions:
-      - 7
-  - galaxy_tags:
-      - manageiq
-      - cfme
-      - cloudforms
-      - redhat
-      - rhc
-      - tools
-  - categories:
-      - manageiq
-      - cfme
-      - cloudforms
-      - redhat
-      - rhc
-      - tools
+    - name: EL
+      versions:
+        - 7
+  galaxy_tags:
+    - manageiq
+    - cfme
+    - cloudforms
+    - redhat
+    - rhc
+    - tools
+  categories:
+    - manageiq
+    - cfme
+    - cloudforms
+    - redhat
+    - rhc
+    - tools
 dependencies: []
