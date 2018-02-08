@@ -9,7 +9,7 @@ manageiq_c_and_u_data_collector_memory_threshold: "400.megabytes"
 manageiq_c_and_u_data_processor_thread_count: 2
 manageiq_c_and_u_data_processor_memory_threshold: "600.megabytes"
 manageiq_event_monitor_memory_threshold: "2.gigabytes"
-manageiq_refresh_worker: "2.gigabytes"
+manageiq_refresh_worker_memory_threshold: "2.gigabytes"
 manageiq_connection_broker_memory_threshold: "2.gigabytes"
 manageiq_vm_analysis_collector_thread_count: 2
 manageiq_vm_analysis_collector_memory_threshold: "2.gigabytes"

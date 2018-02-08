@@ -19,7 +19,7 @@ The _Workers Tab_ colume describes which box on the Workers tab of the Advanced 
 | manageiq\_c\_and\_u\_data\_processor\_memory\_threshold      | No       | 500.megabytes |                 | C & U Data Processors  |
 | manageiq\_c\_and\_u\_data\_processor\_thread\_count          | No       | 2             |                 | C & U Data Processors  |
 | manageiq\_event\_monitor\_memory\_threshold                  | No       | 2.gigabytes   |                 | Event Monitor          |
-| manageiq\_refresh\_worker                                    | No       | 2.gigabytes   |                 | Refresh                |
+| manageiq\_refresh\_worker\_memory\_threshold                 | No       | 2.gigabytes   |                 | Refresh                |
 | manageiq\_connection\_broker\_memory\_threshold              | No       | 2.gigabytes   |                 | Connection Broker      |
 | manageiq\_vm\_analysis\_collector\_memory\_threshold         | No       | 600.megabytes |                 | VM Analysis Collectors |
 | manageiq\_vm\_analysis\_collector\_thread\_count             | No       | 2             |                 | VM Analysis Collectors |

@@ -44,7 +44,7 @@
           # Workers Tab: Refresh
           ems_refresh_worker:
             defaults:
-              memory_threshold: "{{ manageiq_refresh_worker }}"
+              memory_threshold: "{{ manageiq_refresh_worker_memory_threshold }}"
 
           # Workers Tab: Generic Workers
           generic_worker:
