@@ -24,6 +24,7 @@ manageiq_web_service_worker_memory_threshold: "1.gigabytes"
 manageiq_default_memory_threshold: "500.megabytes"
 manageiq_default_thread_count: 1
 manageiq_ansible_memory_threshold: "0.megabytes"
+manageiq_event_handler_memory_threshold: "500.megabytes"
 manageiq_ui_worker_memory_threshold: "1.gigabytes"
 manageiq_websocket_worker_memory_threshold: "1.gigabytes"
 manageiq_vmdb_storage_bridge_worker_memory_threshold: "2.gigabytes"

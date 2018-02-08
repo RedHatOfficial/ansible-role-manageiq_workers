@@ -46,6 +46,9 @@
             defaults:
               memory_threshold: "{{ manageiq_refresh_worker_memory_threshold }}"
 
+          event_handler:
+            memory_threshold: "{{ manageiq_event_handler_memory_threshold }}"
+
           # Workers Tab: Generic Workers
           generic_worker:
             count: "{{ manageiq_generic_worker_thread_count }}"
