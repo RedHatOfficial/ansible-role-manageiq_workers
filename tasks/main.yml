@@ -6,6 +6,8 @@
 - name: ManageIQ Workers | Configure
   manageiq_config:
     name: workers
+    confirm_update_max_retries: "{{ manageiq_workers_confirm_update_max_retries }}"
+    confirm_update_sleep_interval: "{{ manageiq_workers_confirm_update_sleep_interval }}"
     value:
       worker_base:
         # Workers Tab: not exposed
