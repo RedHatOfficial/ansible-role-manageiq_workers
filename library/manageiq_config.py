@@ -35,14 +35,6 @@ options:
         description: Path to the VMDB directory.
         required: False
         default: /var/www/miq/vmdb
-    confirm_update_max_retries:
-        description: Number of times to attempt to confirm configuration has been updated.
-        required: False
-        default: 10
-    confirm_update_sleep_interval:
-        description: Number of seconds between retries for confirming configuration has been updated.
-        required: False
-        default: 1
 '''
 
 EXAMPLES = '''
@@ -71,7 +63,7 @@ name:
     type: str
     returned: always
 original_value:
-    description: The origional value of the ManageIQ config option being modified before modification.
+    description: The original value of the ManageIQ config option being modified before modification.
     type: dict
     returned: always
 value:
@@ -121,27 +113,15 @@ def get_manageiq_config_value(module, name):
 
     return json.loads(out)
 
-
-def wait_for_manageiq_config_value_to_be_expected(module, expected_value):
-    """ Waits until the given expected_value equals the current from ManageIQ.
-    :param module: AnsibleModule making the call
-    :param expected_value: The expected value from ManageIQ config
-    :return: bool, true if expected value matches current value after retires, false otherwise.
-    """
-    # setting the configuration is an async operation which must be waited for for completion
-    # NOTE: if anyone has a better idea how to do this please share
-    retries = 0
-    current_value = ''
-    while expected_value != current_value and retries < module.params['confirm_update_max_retries']:
-        try:
-            current_value = get_manageiq_config_value(module, module.params['name'])
-        except Exception as err:
-            module.fail_json(msg=str(err))
-
-        retries += 1
-        time.sleep(module.params['confirm_update_sleep_interval'])
-
-    return expected_value == current_value
+def create_expected_value(original_value, changes):
+  """ Merges changes into original value to create a merged expected value.
+  :param original_value: dict original value to merge changes into
+  :param changes: dict of changes to merge into original_value to create the expected value
+  :return: dict of the changes merged into the original_value to create an expected value
+  """
+  expected_value = copy.deepcopy(original_value)
+  dict_merge(expected_value, changes)
+  return expected_value
 
 
 def main():
@@ -151,8 +131,6 @@ def main():
             name=dict(type='str', required=True),
             value=dict(type='dict', required=False, default={}),
             vmdb_path=dict(type='str', required=False, default='/var/www/miq/vmdb'),
-            confirm_update_max_retries=dict(type='int', required=False, default=10),
-            confirm_update_sleep_interval=dict(type='int', required=False, default=1)
         ),
         supports_check_mode=True
     )
@@ -166,7 +144,7 @@ def main():
         diff={}
     )
 
-    # get the origional value for the given config option
+    # get the original value for the given config option
     try:
         original_value = get_manageiq_config_value(module, module.params['name'])
     except Exception as err:
@@ -177,8 +155,7 @@ def main():
     result['original_value'] = original_value
 
     # create updated value dictionary
-    update_value = copy.deepcopy(original_value)
-    dict_merge(update_value, module.params['value'])
+    expected_value = create_expected_value(original_value, module.params['value'])
 
     # enable diff mode
     result['diff'] = {
@@ -186,22 +163,22 @@ def main():
             module.params['name']: original_value
         },
         'after': {
-            module.params['name']: update_value
+            module.params['name']: expected_value
         }
     }
 
     # if check_mode then stop here
     if module.check_mode:
-        result['changed'] = original_value != update_value
+        result['changed'] = original_value != expected_value
         module.exit_json(**result)
 
     # update config if difference
     # else no-op
-    if original_value != update_value:
+    if original_value != expected_value:
         (update_value_rc, update_value_out, update_value_err) = module.run_command([
             "rails",
             "r",
-            "MiqServer.my_server.set_config(:%s => JSON.parse('%s'))" % (module.params['name'], json.dumps(update_value))
+            "MiqServer.my_server.set_config(:%s => JSON.parse('%s')); MiqServer.my_server.save!" % (module.params['name'], json.dumps(expected_value))
         ], cwd=module.params['vmdb_path'])
         result['changed'] = True
         if update_value_rc != 0:
@@ -209,19 +186,23 @@ def main():
     else:
         module.exit_json(**result)
 
-    # wait for update value to equal current value
-    current_matches_expected_value = wait_for_manageiq_config_value_to_be_expected(module, update_value)
+    # get the updated current value and expected value
+    # NOTE: needed to create new expected value because MangeIQ has been known
+    #       to update other defaults on the first update of the configuration after
+    #       and upgrade. Therefor, recreating the expected value from the updated current
+    #       value protects against that.
+    current_value = get_manageiq_config_value(module, module.params['name'])
+    expected_value = create_expected_value(current_value, module.params['value'])
 
     # if current ManageIQ config value equals expected value then exit with success
     # else exit with error
-    if current_matches_expected_value:
+    if current_value == expected_value:
         module.exit_json(**result)
     else:
         module.fail_json(
-            msg="Timed out waiting for set config to take affect. { 'retries': %s, 'sleep_interval': %s }" % (
-                module.params['confirm_update_max_retries'], module.params['confirm_update_sleep_interval']
-            ),
-            **result
+            msg="Error updating value for ':%s' config. After update configuration does not match expected value after update." % (module.params['name']),
+            current_value=current_value,
+            expected_value=expected_value 
         )
 
 
