@@ -3,107 +3,250 @@
   include_tasks: validate.yml
   when: manageiq_workers_validate_parameters
 
-- name: ManageIQ Workers | Configure
+# Workers Tab: not exposed
+- name: ManageIQ Workers | Configure | Defaults
   manageiq_config:
     name: workers
     confirm_update_max_retries: "{{ manageiq_workers_confirm_update_max_retries }}"
     confirm_update_sleep_interval: "{{ manageiq_workers_confirm_update_sleep_interval }}"
     value:
       worker_base:
-        # Workers Tab: not exposed
         defaults:
           count: "{{ manageiq_default_thread_count }}"
           memory_threshold: "{{ manageiq_default_memory_threshold }}"
+        queue_worker_base:
+          defaults:
+            memory_threshold: "{{ manageiq_default_memory_threshold }}"
 
-        # Workers Tab: not exposed
+# Workers Tab: not exposed
+- name: ManageIQ Workers | Configure | Embedded Ansible
+  manageiq_config:
+    name: workers
+    confirm_update_max_retries: "{{ manageiq_workers_confirm_update_max_retries }}"
+    confirm_update_sleep_interval: "{{ manageiq_workers_confirm_update_sleep_interval }}"
+    value:
+      worker_base:
         embedded_ansible_worker:
           memory_threshold: "{{ manageiq_ansible_memory_threshold }}"
 
-        # Workers Tab: Event Montior
+# Workers Tab: Event Montior
+- name: ManageIQ Workers | Configure | Event Monitor
+  manageiq_config:
+    name: workers
+    confirm_update_max_retries: "{{ manageiq_workers_confirm_update_max_retries }}"
+    confirm_update_sleep_interval: "{{ manageiq_workers_confirm_update_sleep_interval }}"
+    value:
+      worker_base:
         event_catcher:
           defaults:
             memory_threshold: "{{ manageiq_event_monitor_memory_threshold }}"
           memory_threshold: "{{ manageiq_event_monitor_memory_threshold }}"
 
+# Workers Tab: C & U Data Collectors
+- name: ManageIQ Workers | Configure | C & U Data Collectors
+  manageiq_config:
+    name: workers
+    confirm_update_max_retries: "{{ manageiq_workers_confirm_update_max_retries }}"
+    confirm_update_sleep_interval: "{{ manageiq_workers_confirm_update_sleep_interval }}"
+    value:
+      worker_base:
         queue_worker_base:
-          # Workers Tab: not exposed
-          defaults:
-            memory_threshold: "{{ manageiq_default_memory_threshold }}"
-
-          # Workers Tab: C & U Data Collectors
           ems_metrics_collector_worker:
             defaults:
               count: "{{ manageiq_c_and_u_data_collector_thread_count }}"
               memory_threshold: "{{ manageiq_c_and_u_data_collector_memory_threshold }}"
 
-          # C & U Data Processor
+# Workers Tab: C & U Data Processor
+- name: ManageIQ Workers | Configure | C & U Data Processor
+  manageiq_config:
+    name: workers
+    confirm_update_max_retries: "{{ manageiq_workers_confirm_update_max_retries }}"
+    confirm_update_sleep_interval: "{{ manageiq_workers_confirm_update_sleep_interval }}"
+    value:
+      worker_base:
+        queue_worker_base:
           ems_metrics_processor_worker:
             count: "{{ manageiq_c_and_u_data_processor_thread_count }}"
             memory_threshold: "{{ manageiq_c_and_u_data_processor_memory_threshold }}"
 
-          # Workers Tab: Refresh
+# Workers Tab: Refresh
+- name: ManageIQ Workers | Configure | Refresh
+  manageiq_config:
+    name: workers
+    confirm_update_max_retries: "{{ manageiq_workers_confirm_update_max_retries }}"
+    confirm_update_sleep_interval: "{{ manageiq_workers_confirm_update_sleep_interval }}"
+    value:
+      worker_base:
+        queue_worker_base:
           ems_refresh_worker:
             defaults:
               memory_threshold: "{{ manageiq_refresh_worker_memory_threshold }}"
 
+# Workers Tab: not exposed
+- name: ManageIQ Workers | Configure | Event Handler
+  manageiq_config:
+    name: workers
+    confirm_update_max_retries: "{{ manageiq_workers_confirm_update_max_retries }}"
+    confirm_update_sleep_interval: "{{ manageiq_workers_confirm_update_sleep_interval }}"
+    value:
+      worker_base:
+        queue_worker_base:
           event_handler:
             memory_threshold: "{{ manageiq_event_handler_memory_threshold }}"
 
-          # Workers Tab: Generic Workers
+# Workers Tab: Generic Workers
+- name: ManageIQ Workers | Configure | Generic Workers
+  manageiq_config:
+    name: workers
+    confirm_update_max_retries: "{{ manageiq_workers_confirm_update_max_retries }}"
+    confirm_update_sleep_interval: "{{ manageiq_workers_confirm_update_sleep_interval }}"
+    value:
+      worker_base:
+        queue_worker_base:
           generic_worker:
             count: "{{ manageiq_generic_worker_thread_count }}"
             memory_threshold: "{{ manageiq_generic_worker_memory_threshold }}"
 
-          # Workers Tab: not exposed
+# Workers Tab: not exposed
+- name: ManageIQ Workers | Configure | NetApp Refresh
+  manageiq_config:
+    name: workers
+    confirm_update_max_retries: "{{ manageiq_workers_confirm_update_max_retries }}"
+    confirm_update_sleep_interval: "{{ manageiq_workers_confirm_update_sleep_interval }}"
+    value:
+      worker_base:
+        queue_worker_base:
           netapp_refresh_worker:
             memory_threshold: "{{ manageiq_netapp_refresh_worker_memory_threshold }}"
 
-          # Workers Tab: Priority Workers
+# Workers Tab: Priority Workers
+- name: ManageIQ Workers | Configure | Priority Workers
+  manageiq_config:
+    name: workers
+    confirm_update_max_retries: "{{ manageiq_workers_confirm_update_max_retries }}"
+    confirm_update_sleep_interval: "{{ manageiq_workers_confirm_update_sleep_interval }}"
+    value:
+      worker_base:
+        queue_worker_base:
           priority_worker:
             count: "{{ manageiq_priority_worker_thread_count }}"
             memory_threshold: "{{ manageiq_priority_worker_memory_threshold }}"
 
-          # Workers Tab: Reporting Workers
+# Workers Tab: Reporting Workers
+- name: ManageIQ Workers | Configure | Reporting Workers
+  manageiq_config:
+    name: workers
+    confirm_update_max_retries: "{{ manageiq_workers_confirm_update_max_retries }}"
+    confirm_update_sleep_interval: "{{ manageiq_workers_confirm_update_sleep_interval }}"
+    value:
+      worker_base:
+        queue_worker_base:
           reporting_worker:
             count: "{{ manageiq_reporting_worker_thread_count }}"
             memory_threshold: "{{ manageiq_reporting_worker_memory_threshold }}"
 
-          # Workers Tab: VM Analysis Collectors
+# Workers Tab: VM Analysis Collectors
+- name: ManageIQ Workers | Configure | VM Analysis Collectors
+  manageiq_config:
+    name: workers
+    confirm_update_max_retries: "{{ manageiq_workers_confirm_update_max_retries }}"
+    confirm_update_sleep_interval: "{{ manageiq_workers_confirm_update_sleep_interval }}"
+    value:
+      worker_base:
+        queue_worker_base:
           smart_proxy_worker:
             count: "{{ manageiq_vm_analysis_collector_thread_count }}"
             memory_threshold: "{{ manageiq_vm_analysis_collector_memory_threshold }}"
 
-          # Workers Tab: not exposed
+# Workers Tab: not exposed
+- name: ManageIQ Workers | Configure | Storage Metrics Collector Worker
+  manageiq_config:
+    name: workers
+    confirm_update_max_retries: "{{ manageiq_workers_confirm_update_max_retries }}"
+    confirm_update_sleep_interval: "{{ manageiq_workers_confirm_update_sleep_interval }}"
+    value:
+      worker_base:
+        queue_worker_base:
           storage_metrics_collector_worker:
             count: "{{ manageiq_storage_metrics_collector_worker_thread_count }}"
 
-          # Workers Tab: not exposed
+# Workers Tab: not exposed
+- name: ManageIQ Workers | Configure | VMDB Storage Bridge Worker
+  manageiq_config:
+    name: workers
+    confirm_update_max_retries: "{{ manageiq_workers_confirm_update_max_retries }}"
+    confirm_update_sleep_interval: "{{ manageiq_workers_confirm_update_sleep_interval }}"
+    value:
+      worker_base:
+        queue_worker_base:
           vmdb_storage_bridge_worker:
             memory_threshold: "{{ manageiq_vmdb_storage_bridge_worker_memory_threshold }}"
 
-        # Workers Tab: not exposed
+# Workers Tab: not exposed
+- name: ManageIQ Workers | Configure | Schedule Worker
+  manageiq_config:
+    name: workers
+    confirm_update_max_retries: "{{ manageiq_workers_confirm_update_max_retries }}"
+    confirm_update_sleep_interval: "{{ manageiq_workers_confirm_update_sleep_interval }}"
+    value:
+      worker_base:
         schedule_worker:
           memory_threshold: "{{ manageiq_schedule_worker_memory_threshold }}"
 
-        # Workers Tab: not exposed
+# Workers Tab: not exposed
+- name: ManageIQ Workers | Configure | SIMS Refresh Worker
+  manageiq_config:
+    name: workers
+    confirm_update_max_retries: "{{ manageiq_workers_confirm_update_max_retries }}"
+    confirm_update_sleep_interval: "{{ manageiq_workers_confirm_update_sleep_interval }}"
+    value:
+      worker_base:
         smis_refresh_worker:
           memory_threshold: "{{ manageiq_sims_refresh_worker_memory_threshold }}"
 
-        # Workers Tab: UI worker
+# Workers Tab: UI worker
+- name: ManageIQ Workers | Configure | UI worker
+  manageiq_config:
+    name: workers
+    confirm_update_max_retries: "{{ manageiq_workers_confirm_update_max_retries }}"
+    confirm_update_sleep_interval: "{{ manageiq_workers_confirm_update_sleep_interval }}"
+    value:
+      worker_base:
         ui_worker:
           count: "{{ manageiq_ui_worker_thread_count }}"
           memory_threshold: "{{ manageiq_ui_worker_memory_threshold }}"
 
-        # Workers Tab: Connection Broker
+# Workers Tab: Connection Broker
+- name: ManageIQ Workers | Configure | Connection Broker
+  manageiq_config:
+    name: workers
+    confirm_update_max_retries: "{{ manageiq_workers_confirm_update_max_retries }}"
+    confirm_update_sleep_interval: "{{ manageiq_workers_confirm_update_sleep_interval }}"
+    value:
+      worker_base:
         vim_broker_worker:
           memory_threshold: "{{ manageiq_connection_broker_memory_threshold }}"
 
-        # Workers Tab: Web Serice Workers
+# Workers Tab: Web Serice Workers
+- name: ManageIQ Workers | Configure | Web Serice Workers
+  manageiq_config:
+    name: workers
+    confirm_update_max_retries: "{{ manageiq_workers_confirm_update_max_retries }}"
+    confirm_update_sleep_interval: "{{ manageiq_workers_confirm_update_sleep_interval }}"
+    value:
+      worker_base:
         web_service_worker:
           count: "{{ manageiq_web_service_worker_thread_count }}"
           memory_threshold: "{{ manageiq_web_service_worker_memory_threshold }}"
 
-        # Workers Tab: Websocket Workers
+# Workers Tab: Websocket Workers
+- name: ManageIQ Workers | Configure | Websocket Workers
+  manageiq_config:
+    name: workers
+    confirm_update_max_retries: "{{ manageiq_workers_confirm_update_max_retries }}"
+    confirm_update_sleep_interval: "{{ manageiq_workers_confirm_update_sleep_interval }}"
+    value:
+      worker_base:
         websocket_worker:
           count: "{{ manageiq_websocket_worker_thread_count }}"
           memory_threshold: "{{ manageiq_websocket_worker_memory_threshold }}"
