@@ -7,8 +7,6 @@
 - name: ManageIQ Workers | Configure | Defaults
   manageiq_config:
     name: workers
-    confirm_update_max_retries: "{{ manageiq_workers_confirm_update_max_retries }}"
-    confirm_update_sleep_interval: "{{ manageiq_workers_confirm_update_sleep_interval }}"
     value:
       worker_base:
         defaults:
@@ -22,8 +20,6 @@
 - name: ManageIQ Workers | Configure | Embedded Ansible
   manageiq_config:
     name: workers
-    confirm_update_max_retries: "{{ manageiq_workers_confirm_update_max_retries }}"
-    confirm_update_sleep_interval: "{{ manageiq_workers_confirm_update_sleep_interval }}"
     value:
       worker_base:
         embedded_ansible_worker:
@@ -33,8 +29,6 @@
 - name: ManageIQ Workers | Configure | Event Monitor
   manageiq_config:
     name: workers
-    confirm_update_max_retries: "{{ manageiq_workers_confirm_update_max_retries }}"
-    confirm_update_sleep_interval: "{{ manageiq_workers_confirm_update_sleep_interval }}"
     value:
       worker_base:
         event_catcher:
@@ -46,8 +40,6 @@
 - name: ManageIQ Workers | Configure | C & U Data Collectors
   manageiq_config:
     name: workers
-    confirm_update_max_retries: "{{ manageiq_workers_confirm_update_max_retries }}"
-    confirm_update_sleep_interval: "{{ manageiq_workers_confirm_update_sleep_interval }}"
     value:
       worker_base:
         queue_worker_base:
@@ -60,8 +52,6 @@
 - name: ManageIQ Workers | Configure | C & U Data Processor
   manageiq_config:
     name: workers
-    confirm_update_max_retries: "{{ manageiq_workers_confirm_update_max_retries }}"
-    confirm_update_sleep_interval: "{{ manageiq_workers_confirm_update_sleep_interval }}"
     value:
       worker_base:
         queue_worker_base:
@@ -73,8 +63,6 @@
 - name: ManageIQ Workers | Configure | Refresh
   manageiq_config:
     name: workers
-    confirm_update_max_retries: "{{ manageiq_workers_confirm_update_max_retries }}"
-    confirm_update_sleep_interval: "{{ manageiq_workers_confirm_update_sleep_interval }}"
     value:
       worker_base:
         queue_worker_base:
@@ -86,8 +74,6 @@
 - name: ManageIQ Workers | Configure | Event Handler
   manageiq_config:
     name: workers
-    confirm_update_max_retries: "{{ manageiq_workers_confirm_update_max_retries }}"
-    confirm_update_sleep_interval: "{{ manageiq_workers_confirm_update_sleep_interval }}"
     value:
       worker_base:
         queue_worker_base:
@@ -98,8 +84,6 @@
 - name: ManageIQ Workers | Configure | Generic Workers
   manageiq_config:
     name: workers
-    confirm_update_max_retries: "{{ manageiq_workers_confirm_update_max_retries }}"
-    confirm_update_sleep_interval: "{{ manageiq_workers_confirm_update_sleep_interval }}"
     value:
       worker_base:
         queue_worker_base:
@@ -111,8 +95,6 @@
 - name: ManageIQ Workers | Configure | NetApp Refresh
   manageiq_config:
     name: workers
-    confirm_update_max_retries: "{{ manageiq_workers_confirm_update_max_retries }}"
-    confirm_update_sleep_interval: "{{ manageiq_workers_confirm_update_sleep_interval }}"
     value:
       worker_base:
         queue_worker_base:
@@ -123,8 +105,6 @@
 - name: ManageIQ Workers | Configure | Priority Workers
   manageiq_config:
     name: workers
-    confirm_update_max_retries: "{{ manageiq_workers_confirm_update_max_retries }}"
-    confirm_update_sleep_interval: "{{ manageiq_workers_confirm_update_sleep_interval }}"
     value:
       worker_base:
         queue_worker_base:
@@ -136,8 +116,6 @@
 - name: ManageIQ Workers | Configure | Reporting Workers
   manageiq_config:
     name: workers
-    confirm_update_max_retries: "{{ manageiq_workers_confirm_update_max_retries }}"
-    confirm_update_sleep_interval: "{{ manageiq_workers_confirm_update_sleep_interval }}"
     value:
       worker_base:
         queue_worker_base:
@@ -149,8 +127,6 @@
 - name: ManageIQ Workers | Configure | VM Analysis Collectors
   manageiq_config:
     name: workers
-    confirm_update_max_retries: "{{ manageiq_workers_confirm_update_max_retries }}"
-    confirm_update_sleep_interval: "{{ manageiq_workers_confirm_update_sleep_interval }}"
     value:
       worker_base:
         queue_worker_base:
@@ -162,8 +138,6 @@
 - name: ManageIQ Workers | Configure | Storage Metrics Collector Worker
   manageiq_config:
     name: workers
-    confirm_update_max_retries: "{{ manageiq_workers_confirm_update_max_retries }}"
-    confirm_update_sleep_interval: "{{ manageiq_workers_confirm_update_sleep_interval }}"
     value:
       worker_base:
         queue_worker_base:
@@ -174,8 +148,6 @@
 - name: ManageIQ Workers | Configure | VMDB Storage Bridge Worker
   manageiq_config:
     name: workers
-    confirm_update_max_retries: "{{ manageiq_workers_confirm_update_max_retries }}"
-    confirm_update_sleep_interval: "{{ manageiq_workers_confirm_update_sleep_interval }}"
     value:
       worker_base:
         queue_worker_base:
@@ -186,8 +158,6 @@
 - name: ManageIQ Workers | Configure | Schedule Worker
   manageiq_config:
     name: workers
-    confirm_update_max_retries: "{{ manageiq_workers_confirm_update_max_retries }}"
-    confirm_update_sleep_interval: "{{ manageiq_workers_confirm_update_sleep_interval }}"
     value:
       worker_base:
         schedule_worker:
@@ -197,8 +167,6 @@
 - name: ManageIQ Workers | Configure | SIMS Refresh Worker
   manageiq_config:
     name: workers
-    confirm_update_max_retries: "{{ manageiq_workers_confirm_update_max_retries }}"
-    confirm_update_sleep_interval: "{{ manageiq_workers_confirm_update_sleep_interval }}"
     value:
       worker_base:
         smis_refresh_worker:
@@ -208,8 +176,6 @@
 - name: ManageIQ Workers | Configure | UI worker
   manageiq_config:
     name: workers
-    confirm_update_max_retries: "{{ manageiq_workers_confirm_update_max_retries }}"
-    confirm_update_sleep_interval: "{{ manageiq_workers_confirm_update_sleep_interval }}"
     value:
       worker_base:
         ui_worker:
@@ -220,8 +186,6 @@
 - name: ManageIQ Workers | Configure | Connection Broker
   manageiq_config:
     name: workers
-    confirm_update_max_retries: "{{ manageiq_workers_confirm_update_max_retries }}"
-    confirm_update_sleep_interval: "{{ manageiq_workers_confirm_update_sleep_interval }}"
     value:
       worker_base:
         vim_broker_worker:
@@ -231,8 +195,6 @@
 - name: ManageIQ Workers | Configure | Web Serice Workers
   manageiq_config:
     name: workers
-    confirm_update_max_retries: "{{ manageiq_workers_confirm_update_max_retries }}"
-    confirm_update_sleep_interval: "{{ manageiq_workers_confirm_update_sleep_interval }}"
     value:
       worker_base:
         web_service_worker:
@@ -243,8 +205,6 @@
 - name: ManageIQ Workers | Configure | Websocket Workers
   manageiq_config:
     name: workers
-    confirm_update_max_retries: "{{ manageiq_workers_confirm_update_max_retries }}"
-    confirm_update_sleep_interval: "{{ manageiq_workers_confirm_update_sleep_interval }}"
     value:
       worker_base:
         websocket_worker:
