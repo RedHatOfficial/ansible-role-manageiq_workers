@@ -17,7 +17,7 @@ DOCUMENTATION = '''
 module: manageiq_config
 
 short_description: Module for managing ManageIQ configuration.
-version_added: '2.5'
+version_added: '2.6'
 author: Ian Tewksbury (@itewk)
 description:
     - "Module for managing ManageIQ or CloudForms Managment Engine (CFME) configuration via the local rails runner on the Appliance."
@@ -202,7 +202,7 @@ def main():
         module.fail_json(
             msg="Error updating value for ':%s' config. After update configuration does not match expected value after update." % (module.params['name']),
             current_value=current_value,
-            expected_value=expected_value 
+            expected_value=expected_value
         )
 
 
