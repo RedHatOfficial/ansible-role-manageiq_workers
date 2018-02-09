@@ -60,8 +60,8 @@
 - name: ManageIQ Workers | Validate variables | Refresh | Memory Threshold
   assert:
     that:
-      - "manageiq_refresh_worker in manageiq_valid_memory_threshold_2"
-    msg: "manageiq_refresh_worker ({{ manageiq_refresh_worker }}) must be in {{ manageiq_valid_memory_threshold_2 }}"
+      - "manageiq_refresh_worker_memory_threshold in manageiq_valid_memory_threshold_2"
+    msg: "manageiq_refresh_worker_memory_threshold ({{ manageiq_refresh_worker_memory_threshold }}) must be in {{ manageiq_valid_memory_threshold_2 }}"
 
 - name: ManageIQ Workers | Validate variables | Connection Broker | Memory Threshold
   assert:
