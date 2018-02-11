@@ -24,11 +24,10 @@ description:
 
 options:
     name:
-        description:
-            - Name of the ManageIQ config element to modify.
+        description: Name of the ManageIQ config element to modify.
         required: True
     value:
-        description: Dictionary to set as the value for the ManageIQ config option. Any values not given will be left at current value.
+        description: Dictionary to set as the value for the ManageIQ config option. This performs a deep merge of the given value with the existing value, therefor any parts of the value dictionary not given are not affected.
         required: False
         default: {}
     vmdb_path:
@@ -113,15 +112,16 @@ def get_manageiq_config_value(module, name):
 
     return json.loads(out)
 
+
 def create_expected_value(original_value, changes):
-  """ Merges changes into original value to create a merged expected value.
-  :param original_value: dict original value to merge changes into
-  :param changes: dict of changes to merge into original_value to create the expected value
-  :return: dict of the changes merged into the original_value to create an expected value
-  """
-  expected_value = copy.deepcopy(original_value)
-  dict_merge(expected_value, changes)
-  return expected_value
+    """ Merges changes into original value to create a merged expected value.
+    :param original_value: dict original value to merge changes into
+    :param changes: dict of changes to merge into original_value to create the expected value
+    :return: dict of the changes merged into the original_value to create an expected value
+    """
+    expected_value = copy.deepcopy(original_value)
+    dict_merge(expected_value, changes)
+    return expected_value
 
 
 def main():
@@ -178,7 +178,8 @@ def main():
         (update_value_rc, update_value_out, update_value_err) = module.run_command([
             "rails",
             "r",
-            "MiqServer.my_server.set_config(:%s => JSON.parse('%s')); MiqServer.my_server.save!" % (module.params['name'], json.dumps(expected_value))
+            "Vmdb::Settings.save!(MiqServer.my_server, :%s => JSON.parse(ARGV.last))" % (module.params['name']),
+            json.dumps(expected_value)
         ], cwd=module.params['vmdb_path'])
         result['changed'] = True
         if update_value_rc != 0:
