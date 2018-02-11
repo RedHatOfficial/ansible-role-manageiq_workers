@@ -35,3 +35,4 @@ manageiq_storage_metrics_collector_worker_thread_count: 2
 
 # Other
 manageiq_workers_validate_parameters: True
+manageiq_workers_combined_edits: True

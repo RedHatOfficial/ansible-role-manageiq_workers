@@ -1,0 +1,63 @@
+---
+- name: ManageIQ Workers | Configure | All Memory Thresholds and Thread Counts
+  manageiq_config:
+    name: workers
+    value:
+      worker_base:
+        defaults:
+          count: "{{ manageiq_default_thread_count }}"
+          memory_threshold: "{{ manageiq_default_memory_threshold }}"
+        embedded_ansible_worker:
+          memory_threshold: "{{ manageiq_ansible_memory_threshold }}"
+        event_catcher:
+          defaults:
+            memory_threshold: "{{ manageiq_event_monitor_memory_threshold }}"
+          memory_threshold: "{{ manageiq_event_monitor_memory_threshold }}"
+        queue_worker_base:
+          defaults:
+            memory_threshold: "{{ manageiq_default_memory_threshold }}"
+          ems_metrics_collector_worker:
+            defaults:
+              count: "{{ manageiq_c_and_u_data_collector_thread_count }}"
+              memory_threshold: "{{ manageiq_c_and_u_data_collector_memory_threshold }}"
+          ems_metrics_processor_worker:
+            count: "{{ manageiq_c_and_u_data_processor_thread_count }}"
+            memory_threshold: "{{ manageiq_c_and_u_data_processor_memory_threshold }}"
+          ems_refresh_worker:
+            defaults:
+              memory_threshold: "{{ manageiq_refresh_worker_memory_threshold }}"
+          event_handler:
+            memory_threshold: "{{ manageiq_event_handler_memory_threshold }}"
+          generic_worker:
+            count: "{{ manageiq_generic_worker_thread_count }}"
+            memory_threshold: "{{ manageiq_generic_worker_memory_threshold }}"
+          netapp_refresh_worker:
+            memory_threshold: "{{ manageiq_netapp_refresh_worker_memory_threshold }}"
+          priority_worker:
+            count: "{{ manageiq_priority_worker_thread_count }}"
+            memory_threshold: "{{ manageiq_priority_worker_memory_threshold }}"
+          reporting_worker:
+            count: "{{ manageiq_reporting_worker_thread_count }}"
+            memory_threshold: "{{ manageiq_reporting_worker_memory_threshold }}"
+          smart_proxy_worker:
+            count: "{{ manageiq_vm_analysis_collector_thread_count }}"
+            memory_threshold: "{{ manageiq_vm_analysis_collector_memory_threshold }}"
+          storage_metrics_collector_worker:
+            count: "{{ manageiq_storage_metrics_collector_worker_thread_count }}"
+          vmdb_storage_bridge_worker:
+            memory_threshold: "{{ manageiq_vmdb_storage_bridge_worker_memory_threshold }}"
+        schedule_worker:
+          memory_threshold: "{{ manageiq_schedule_worker_memory_threshold }}"
+        smis_refresh_worker:
+          memory_threshold: "{{ manageiq_sims_refresh_worker_memory_threshold }}"
+        ui_worker:
+          count: "{{ manageiq_ui_worker_thread_count }}"
+          memory_threshold: "{{ manageiq_ui_worker_memory_threshold }}"
+        vim_broker_worker:
+          memory_threshold: "{{ manageiq_connection_broker_memory_threshold }}"
+        web_service_worker:
+          count: "{{ manageiq_web_service_worker_thread_count }}"
+          memory_threshold: "{{ manageiq_web_service_worker_memory_threshold }}"
+        websocket_worker:
+          count: "{{ manageiq_websocket_worker_thread_count }}"
+          memory_threshold: "{{ manageiq_websocket_worker_memory_threshold }}"
