@@ -1,14 +1,2 @@
 ---
-- name: ManageIQ Workers | Include Validate Tasks
-  include_tasks: validate.yml
-  when: manageiq_workers_validate_parameters
-
-# this is more efficent but has less detail about what is going on
-- name: ManageIQ Workers | Configure | Include Combined Edit Tasks
-  include_tasks: configure-combined.yml
-  when: manageiq_workers_combined_edits
-
-# this has more detaila bout what is going on but is less efficent
-- name: ManageIQ Workers | Configure | Include Seperate Edit Tasks
-  include_tasks: configure-seperate.yml
-  when: not manageiq_workers_combined_edits
+# tasks file for ansible-role-manageiq_workers
