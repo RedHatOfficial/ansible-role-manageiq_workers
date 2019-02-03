@@ -1,2 +1,38 @@
 ---
-# defaults file for ansible-role-manageiq_workers
+# Exposed in the UI
+manageiq_generic_worker_thread_count: 2
+manageiq_generic_worker_memory_threshold: "500.megabytes"
+manageiq_priority_worker_thread_count: 2
+manageiq_priority_worker_memory_threshold: "600.megabytes"
+manageiq_c_and_u_data_collector_thread_count: 2
+manageiq_c_and_u_data_collector_memory_threshold: "400.megabytes"
+manageiq_c_and_u_data_processor_thread_count: 2
+manageiq_c_and_u_data_processor_memory_threshold: "600.megabytes"
+manageiq_event_monitor_memory_threshold: "2.gigabytes"
+manageiq_refresh_worker_memory_threshold: "2.gigabytes"
+manageiq_connection_broker_memory_threshold: "2.gigabytes"
+manageiq_vm_analysis_collector_thread_count: 2
+manageiq_vm_analysis_collector_memory_threshold: "2.gigabytes"
+manageiq_ui_worker_thread_count: 1
+manageiq_websocket_worker_thread_count: 1
+manageiq_reporting_worker_thread_count: 2
+manageiq_reporting_worker_memory_threshold: "500.megabytes"
+manageiq_web_service_worker_thread_count: 1
+manageiq_web_service_worker_memory_threshold: "1.gigabytes"
+
+# Not exposed in the UI
+manageiq_default_memory_threshold: "500.megabytes"
+manageiq_default_thread_count: 1
+manageiq_ansible_memory_threshold: "0.megabytes"
+manageiq_event_handler_memory_threshold: "500.megabytes"
+manageiq_ui_worker_memory_threshold: "1.gigabytes"
+manageiq_websocket_worker_memory_threshold: "1.gigabytes"
+manageiq_vmdb_storage_bridge_worker_memory_threshold: "2.gigabytes"
+manageiq_schedule_worker_memory_threshold: "500.megabytes"
+manageiq_netapp_refresh_worker_memory_threshold: "2.gigabytes"
+manageiq_sims_refresh_worker_memory_threshold: "1.gigabytes"
+manageiq_storage_metrics_collector_worker_thread_count: 2
+
+# Other
+manageiq_workers_validate_parameters: True
+manageiq_workers_combined_edits: True
