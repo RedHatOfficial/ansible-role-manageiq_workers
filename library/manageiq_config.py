@@ -105,7 +105,7 @@ def get_manageiq_config_value(module, name):
     returncode, out, err = module.run_command([
         "rails",
         "r",
-        "puts MiqServer.my_server.get_config(:%s).config.to_json" % (name)
+        "puts Vmdb::Settings.for_resource(MiqServer.my_server)[:%s].to_json" % (name)
     ], cwd=module.params['vmdb_path'])
     if returncode != 0:
         raise Exception("Error getting existing value for ':%s' config: %s" % (name, err))
